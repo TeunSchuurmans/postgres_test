@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_server
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d  # Mounts the init folder for migrations
+      - ./data:/var/lib/postgresql/data  # Mounts the data folder for persistent data
